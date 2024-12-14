@@ -10,10 +10,10 @@ const dbConfig = {
   password: "E7c5h3o2",
   server: "3.140.82.112",
   database: "finify",
-//   options: {
-//     encrypt: true, // For Azure; set to false for local SQL Server
-//     trustServerCertificate: true, // Required for self-signed certificates
-//   },
+   options: {
+     encrypt: true, // For Azure; set to false for local SQL Server
+     trustServerCertificate: true, // Required for self-signed certificates
+   },
 };
 
 // Toggle status function
