@@ -2,7 +2,6 @@ const express = require("express");
 const sql = require("mssql");
 const cors = require('cors');
 
-
 const app = express();
 const port = 1000;
 app.use(cors());
@@ -46,7 +45,7 @@ app.get("/get-status", async (req, res) => {
   }
 });
 
-// POST route to toggle status (as previously)
+// POST route to toggle status
 app.post("/toggle-status", async (req, res) => {
   const newStatus = req.query.status; // Pass status in query, e.g., ?status=1 or ?status=0
   if (newStatus !== "0" && newStatus !== "1") {
