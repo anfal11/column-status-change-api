@@ -1,10 +1,12 @@
 const express = require("express");
 const sql = require("mssql");
 const cors = require('cors');
-app.use(cors());
+
 
 const app = express();
 const port = 1000;
+app.use(cors());
+app.use(express.json());
 
 // MSSQL Database connection configuration
 const dbConfig = {
