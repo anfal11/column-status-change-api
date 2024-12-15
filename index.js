@@ -9,9 +9,9 @@ app.use(express.json());
 
 // MSSQL Database connection configuration
 const dbConfig = {
-  user: "finify",
-  password: "E7c5h3o2",
-  server: "3.140.82.112",
+  user: "ShebaPayMsql",
+  password: "mu(1UzLM&-?_jjXR",
+  server: "10.33.11.9",
   database: "finify",
   options: {
     encrypt: true, // For Azure; set to false for local SQL Server
@@ -25,10 +25,10 @@ app.get("/get-status", async (req, res) => {
     // Connect to the MSSQL database
     const pool = await sql.connect(dbConfig);
 
-    // Fetch current status for id = 11
+    // Fetch current status for id = 21
     const result = await pool
       .request()
-      .query("SELECT status FROM dbo.Finify_Sheba_Features WHERE id = 11");
+      .query("SELECT status FROM dbo.Finify_Sheba_Features WHERE id = 21");
 
     // Close the connection to the database
     await pool.close();
@@ -37,7 +37,7 @@ app.get("/get-status", async (req, res) => {
     if (result.recordset.length > 0) {
       res.json({ status: result.recordset[0].status });
     } else {
-      res.status(404).json({ message: "Status not found for ID 11" });
+      res.status(404).json({ message: "Status not found for ID 21" });
     }
   } catch (err) {
     console.error(err);
@@ -60,13 +60,13 @@ app.post("/toggle-status", async (req, res) => {
     const result = await pool
       .request()
       .input("newStatus", sql.Int, newStatus) // Pass newStatus as an input parameter
-      .query("UPDATE dbo.Finify_Sheba_Features SET status = @newStatus WHERE id = 11");
+      .query("UPDATE dbo.Finify_Sheba_Features SET status = @newStatus WHERE id = 21");
 
     // Close the connection to the database
     await pool.close();
 
     // Return response
-    res.json({ message: `Status updated to ${newStatus} for ID 11` });
+    res.json({ message: `Status updated to ${newStatus} for ID 21` });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Database error", error: err.message });
